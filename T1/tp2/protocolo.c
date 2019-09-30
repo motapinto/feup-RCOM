@@ -1,5 +1,4 @@
 #include "protocolo.h"
-#include <signal.h>
 
 #define MAX_RETR 3
 #define TIMEOUT 3

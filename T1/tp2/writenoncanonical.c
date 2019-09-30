@@ -1,4 +1,13 @@
 /*Non-Canonical Input Processing*/
+
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <termios.h>
+#include <string.h>
+#include <fcntl.h>
+#include <stdlib.h>
+
 #include "protocolo.h"
 
 #define BAUDRATE B38400

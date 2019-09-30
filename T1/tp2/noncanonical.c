@@ -2,13 +2,12 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
 #include <termios.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include "structs.h"
+#include <fcntl.h>
+#include <stdlib.h>
+
+#include "protocolo.h"
 
 #define ST_START 0
 #define ST_FLAG_RCV 1
