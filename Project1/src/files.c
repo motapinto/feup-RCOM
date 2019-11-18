@@ -1,6 +1,8 @@
 #include "protocolo.h"
 #include "application.h"
 #include "files.h"
+#include "time.h"
+#include <sys/time.h>
 
 int sendFile(int portNumber, char *fileName) {
     uint size_file;
@@ -25,6 +27,8 @@ int sendFile(int portNumber, char *fileName) {
 
     uint length, nBytes = 0, sequenceNumber = 0;
     uchar buffer[MAX_BUF];
+    struct timeval start, end;
+    gettimeofday(&start,NULL);
 
     // While reads file sendDataPackage
     while(nBytes != size_file) {
@@ -41,6 +45,8 @@ int sendFile(int portNumber, char *fileName) {
         sequenceNumber++;
         nBytes += length;
     }
+    gettimeofday(&end,NULL);
+    printf("Send Time: %lf\n", end.tv_sec + (double)end.tv_usec/1000000 - (start.tv_sec + (double)start.tv_usec/1000000));
 
     if(fclose(file) != 0) {
         printf("Error while closing file!\n");

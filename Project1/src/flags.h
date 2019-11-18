@@ -57,7 +57,7 @@
 
 //Other variables
 #define BUF_SIZE 5
-#define MAX_BUF 255
+#define MAX_BUF 384
 #define DATA_START_INDEX 4
 
 //Return types

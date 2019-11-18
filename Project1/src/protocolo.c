@@ -1,8 +1,10 @@
 #include "protocolo.h"
+#include "time.h"
 
 //LOCAL MACROS
 #define MAX_RETR 3
 #define TIMEOUT 3
+#define DELAY (640*1000)
 
 //GLOBAL VARS
 DataStruct *pointer_to_data=NULL;
@@ -88,8 +90,6 @@ int openNonCanonical(int port_number)
 void alarm_handler_set_signal(int signo)
 {
 
-  printf("Alarme chamado\n");
-
   if (signo != SIGALRM)
   {
     printf("Handler nao executado\n");
@@ -106,7 +106,6 @@ void alarm_handler_set_signal(int signo)
   }
   else
   {
-    //printf("Handler chama llclose.TIMEOUT TOTAL\n");
     llclose(fd_for_handler, FLAG_HANDLER_CALL);
     exit(-1);
   }
@@ -158,7 +157,6 @@ void alarm_handler_disc_signal(int signo)
 //HANDLER FOR THE LLWRITE PROTECTION
 void alarm_handler_data(int signo)
 {
-  printf("Alarme\n");
   if (signo != SIGALRM)
   {
     printf("Handler nao executado\n");
@@ -386,8 +384,6 @@ int sendBlock(int flag, int fd)
     else
       buf[C_INDEX] = C_REJ(0);
 
-    printf("ENVIEI REJ:%x\n",buf[C_INDEX]);
-
     buf[BCC_INDEX] = buf[A_INDEX] ^ buf[C_INDEX];
 
     buf[FLAG_INDEX_END] = FLAG;
@@ -400,7 +396,6 @@ int sendBlock(int flag, int fd)
   }
   else
   {
-    printf("SEND BLOCK not implemented\n");
     return WRITE_FAIL;
   }
 
@@ -1103,7 +1098,6 @@ int readBlock(int flag, int fd)
 
   else
   {
-    printf("Read block not implemented\n");
     return READ_FAIL;
   }
 }
@@ -1212,7 +1206,9 @@ int llwrite(int fd, unsigned char *buffer, int length)
       perror("Error in ignoring SIG ALARM handler");
     }
 
+    // usleep(DELAY);
     num_bytes=sendBlock(FLAG_LL_DATA_SEND,fd);
+
 
     if(num_bytes==WRITE_FAIL){
       printf("Erro a enviar o bloco\n");
@@ -1329,14 +1325,12 @@ int llread(int fd, unsigned char *buffer)
         }
       }
       //Read byte para o buf
-
       if (read(fd, &buf[size_buf], 1) < 0)
       {
         free(buf);
         perror("Failled to read");
         return READ_FAIL;
       }
-
 
       //Go through state machine
       switch (state)
@@ -1406,7 +1400,6 @@ int llread(int fd, unsigned char *buffer)
 
         case ST_C_RCV:
         {
-
           if (buf[size_buf] == (A_CE_AR ^ C(r)))
             state = ST_D;
 
@@ -1445,7 +1438,6 @@ int llread(int fd, unsigned char *buffer)
       {
         end = true;
       }else{
-        printf("Erro no bcc2\n");
         end=false;
       }
 
