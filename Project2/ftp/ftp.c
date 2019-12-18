@@ -74,7 +74,7 @@ int ftp_password(const int socket_control,const char *password){
 }
 int ftp_write(const int socket_fd,const char *msg){
 
-    size_t n_bytes=-1;
+    unsigned long n_bytes=-1;
 
     if(msg==NULL){
         fprintf(stderr,"Ref invalida em ftp_write\n");
@@ -87,7 +87,7 @@ int ftp_write(const int socket_fd,const char *msg){
     //Is necessary a \n at the end
     write(socket_fd,"\n",1);
     
-    fprintf(stdout,">Sent:%ld Byte\n",n_bytes);
+    fprintf(stdout,">Sent:%lu Byte\n",n_bytes);
     
 
     return n_bytes;    

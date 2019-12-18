@@ -1,0 +1,24 @@
+ether -> MAC address
+
+Maquina 1:
+IP:172.16.20.1
+MAC:00:c0:df:08:d5:b2
+
+
+Maquina 2:
+IP:172.16.21.1
+MAC:00:01:02:9f:80:17
+
+Maquina 4:
+  eth0:
+    IP:172.16.20.254
+    MAC:00:08:54:50:3f:2c
+  eth1:
+    IP:172.16.21.253
+    MAC:00:22:64:a6:a4:f1
+
+
+flash doc: expN_253 N={2,3,4,5,..} 
+
+
+arp: protocolo implementado na pilha TCP IP que tem como funcao ao receber da camada superior um IP ser capaz na rede de fazer uma pergunta usando um broadcast para saber atraves da resposta que espera receber de uma maquina qual o MAC Address da maquina nessa rede
