@@ -1,4 +1,4 @@
-# RCOM Projects
+# RCOM
 
 > **2018/2019** - 3rd Year, 1st Semester
 >
