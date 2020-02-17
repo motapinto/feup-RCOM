@@ -1,6 +1,6 @@
 # RCOM
 
-> **2018/2019** - 3rd Year, 1st Semester
+> **2019/2020** - 3rd Year, 1st Semester
 >
 > **Course:** Redes de Computadores: [RCOM page in sigarra](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436445) | Computer Networks
 >
